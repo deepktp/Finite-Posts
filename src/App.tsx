@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Box, Stack } from "@mui/system";
 import Feed from "./components/Feed";
 import NavBar from "./components/NavBar";
@@ -7,16 +8,17 @@ import SideBar from "./components/SideBar";
 
 function App() {
     
-  
+  const [showSideBar, setShowSideBar] = useState<boolean>(false);
+  const [showRightBar, setRightBar] = useState<boolean>(false);
 
   return (
     <>
        <Box>
-          <NavBar />
+          <NavBar setSideBar= {setShowSideBar} sideBarStatus={showSideBar} setRightBar= {setRightBar} rightBarStatus= {showRightBar} />
           <Stack direction="row" justify-content="space-between">
-            <SideBar />
+            <SideBar sideBarStatus={showSideBar} />
             <Feed />
-            <RightBar />
+            <RightBar rightBarStatus={showRightBar} />
           </Stack>
        </Box>
     </>

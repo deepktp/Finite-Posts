@@ -1,4 +1,4 @@
-import { Avatar, Box, List, ListItemButton, ListItemAvatar, ListItemText, styled } from "@mui/material";
+import { Avatar, Box, List, ListItemButton, ListItemAvatar, ListItemText, styled, useMediaQuery } from "@mui/material";
 
 const StyledListItem= styled((ListItemButton))((theme)=>({
     maxHeight: "60px",
@@ -7,12 +7,32 @@ const StyledListItem= styled((ListItemButton))((theme)=>({
     margin: "10px auto"
 }))
 
+const StyledBox= styled((Box))(({theme})=>({
 
-const SideBar = () => {
+    [theme.breakpoints.down("sm")]: {
+        position: "absolute",
+        top: "9vh",
+        left: "0",
+        width: "85%",
+        height: "100%",
+        backgroundColor: "white",
+        zIndex: "1000"
+    },
+
+
+}))
+
+const SideBar = ({sideBarStatus}:{sideBarStatus: boolean}) => {
+    const isMobile = useMediaQuery("(max-width: 600px)");
+
+
     return ( 
         <>
-            <Box flex= {2} p= {1} 
-                sx={{display: { xs: "none", sm: "block"}, maxHeight: "91vh", overflow: "auto"}}>
+            
+            <StyledBox flex= {2} p= {1} 
+                style={{ display: isMobile ? (sideBarStatus? "block" : "none") : 'block' }}
+                sx={{ maxHeight: "91vh", overflow: "auto"}}
+                >
                 <List>
                 <StyledListItem>
                         <ListItemAvatar>
@@ -116,7 +136,7 @@ const SideBar = () => {
                     </StyledListItem>
                     
                 </List>
-            </Box>
+            </StyledBox>
         </>
      );
 }

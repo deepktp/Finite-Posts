@@ -1,4 +1,4 @@
-import { Box, AvatarGroup, Avatar, Typography, ImageList, ImageListItem, ListItemButton, List, Divider, ListItemAvatar, ListItemText, styled } from "@mui/material";
+import { Box, AvatarGroup, Avatar, Typography, ImageList, ImageListItem, ListItemButton, List, Divider, ListItemAvatar, ListItemText, styled, useMediaQuery } from "@mui/material";
 const StyledListItem = styled((ListItemButton))((theme) => ({
     maxHeight: "60px",
     overflow: "hidden",
@@ -6,11 +6,30 @@ const StyledListItem = styled((ListItemButton))((theme) => ({
     margin: "10px auto"
 }))
 
+const StyledBox= styled((Box))(({theme})=>({
 
-const RightBar = () => {
+    [theme.breakpoints.down("md")]: {
+        position: "absolute",
+        top: "9vh",
+        right: "0",
+        width: "85%",
+        height: "100%",
+        backgroundColor: "white",
+        zIndex: "999"
+    },
+
+
+}))
+
+const RightBar = ({rightBarStatus}: {rightBarStatus: boolean}) => {
+
+    const isMobile = useMediaQuery('(max-width:900px)');
     return (
         <>
-            <Box flex={2} p={1} sx={{ display: { xs: "none", sm: "none", md: "block" }, height: "91vh" }}>
+            <StyledBox flex= {2} p= {1} 
+                style={{ display: isMobile ? (rightBarStatus? "block" : "none") : 'block' }}
+                sx={{ maxHeight: "91vh", overflow: "auto"}}
+                >
                 <Typography variant="h6" sx={{ fontWeight: "bold", color: "text.secondary", mb: 1 }}>Your Friends</Typography>
                 <AvatarGroup max={6} sx={{ justifyContent: "center" }}>
                     <Avatar alt="Remy Sharp" src="https://i.pravatar.cc/150?img=1" />
@@ -95,7 +114,7 @@ const RightBar = () => {
                     </StyledListItem>
 
                 </List>
-            </Box>
+            </StyledBox>
         </>
     );
 }
