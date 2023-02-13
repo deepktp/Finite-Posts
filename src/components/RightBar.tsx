@@ -10,7 +10,7 @@ const StyledListItem = styled((ListItemButton))((theme) => ({
 const RightBar = () => {
     return (
         <>
-            <Box flex={2} p={1} sx={{ display: { sm: "none", md: "block" }, height: "91vh" }}>
+            <Box flex={2} p={1} sx={{ display: { xs: "none", sm: "none", md: "block" }, height: "91vh" }}>
                 <Typography variant="h6" sx={{ fontWeight: "bold", color: "text.secondary", mb: 1 }}>Your Friends</Typography>
                 <AvatarGroup max={6} sx={{ justifyContent: "center" }}>
                     <Avatar alt="Remy Sharp" src="https://i.pravatar.cc/150?img=1" />
