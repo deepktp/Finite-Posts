@@ -12,7 +12,8 @@ const StyledBox= styled((Box))(({theme})=>({
         position: "absolute",
         top: "9vh",
         right: "0",
-        width: "85%",
+        maxWidth: "350px",
+        width: "100%",
         height: "100%",
         backgroundColor: "white",
         zIndex: "999"
